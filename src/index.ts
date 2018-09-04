@@ -1,5 +1,11 @@
-import { SHA256 } from "./crypto/Hash";
+import Hash from "./crypto/Hash";
+import Cipher from "./crypto/Cipher";
 
-let hash = new SHA256();
+console.log(Hash.digest("김현준"));
+let key = "김현준";
+let original = "김현준";
+let enc = Cipher.encrypt(original, key);
+console.log(enc);
 
-console.log(hash.digest("qegqeg111"));
+let dec = Cipher.decrypt(enc, key);
+console.log(dec);
