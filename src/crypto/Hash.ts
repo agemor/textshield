@@ -1,7 +1,7 @@
-import { SHA256 } from "crypto-js";
+import Sha256 from "crypto-js/sha256";
 
 export default class Hash {
   static digest(message: string): string {
-    return SHA256(message).toString();
+    return Sha256(message).toString();
   }
 }

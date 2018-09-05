@@ -1,11 +1,15 @@
-import { AES, enc } from "crypto-js";
+import Aes from "crypto-js/aes";
+import Utf8 from "crypto-js/enc-utf8";
 
-export default class Hash {
+export default class Cipher {
   static encrypt(message: string, key: string): string {
-    return AES.encrypt(message, key).toString();
+    var ciphertext = Aes.encrypt(message, key);
+    return ciphertext.toString();
   }
 
   static decrypt(message: string, key: string): string {
-    return AES.decrypt(message, key).toString(enc.Utf8);
+    var bytes = Aes.decrypt(message.toString(), "secret key 123");
+    var plaintext = bytes.toString(Utf8);
+    return plaintext.toString();
   }
 }
