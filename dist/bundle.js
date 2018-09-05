@@ -130,6 +130,17 @@ eval(";(function (root, factory) {\n\tif (true) {\n\t\t// CommonJS\n\t\tmodule.e
 
 /***/ }),
 
+/***/ "./node_modules/crypto-js/enc-hex.js":
+/*!*******************************************!*\
+  !*** ./node_modules/crypto-js/enc-hex.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval(";(function (root, factory) {\n\tif (true) {\n\t\t// CommonJS\n\t\tmodule.exports = exports = factory(__webpack_require__(/*! ./core */ \"./node_modules/crypto-js/core.js\"));\n\t}\n\telse {}\n}(this, function (CryptoJS) {\n\n\treturn CryptoJS.enc.Hex;\n\n}));\n\n//# sourceURL=webpack:///./node_modules/crypto-js/enc-hex.js?");
+
+/***/ }),
+
 /***/ "./node_modules/crypto-js/enc-utf8.js":
 /*!********************************************!*\
   !*** ./node_modules/crypto-js/enc-utf8.js ***!
@@ -174,6 +185,28 @@ eval(";(function (root, factory) {\n\tif (true) {\n\t\t// CommonJS\n\t\tmodule.e
 
 /***/ }),
 
+/***/ "./node_modules/crypto-js/mode-ctr.js":
+/*!********************************************!*\
+  !*** ./node_modules/crypto-js/mode-ctr.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval(";(function (root, factory, undef) {\n\tif (true) {\n\t\t// CommonJS\n\t\tmodule.exports = exports = factory(__webpack_require__(/*! ./core */ \"./node_modules/crypto-js/core.js\"), __webpack_require__(/*! ./cipher-core */ \"./node_modules/crypto-js/cipher-core.js\"));\n\t}\n\telse {}\n}(this, function (CryptoJS) {\n\n\t/**\n\t * Counter block mode.\n\t */\n\tCryptoJS.mode.CTR = (function () {\n\t    var CTR = CryptoJS.lib.BlockCipherMode.extend();\n\n\t    var Encryptor = CTR.Encryptor = CTR.extend({\n\t        processBlock: function (words, offset) {\n\t            // Shortcuts\n\t            var cipher = this._cipher\n\t            var blockSize = cipher.blockSize;\n\t            var iv = this._iv;\n\t            var counter = this._counter;\n\n\t            // Generate keystream\n\t            if (iv) {\n\t                counter = this._counter = iv.slice(0);\n\n\t                // Remove IV for subsequent blocks\n\t                this._iv = undefined;\n\t            }\n\t            var keystream = counter.slice(0);\n\t            cipher.encryptBlock(keystream, 0);\n\n\t            // Increment counter\n\t            counter[blockSize - 1] = (counter[blockSize - 1] + 1) | 0\n\n\t            // Encrypt\n\t            for (var i = 0; i < blockSize; i++) {\n\t                words[offset + i] ^= keystream[i];\n\t            }\n\t        }\n\t    });\n\n\t    CTR.Decryptor = Encryptor;\n\n\t    return CTR;\n\t}());\n\n\n\treturn CryptoJS.mode.CTR;\n\n}));\n\n//# sourceURL=webpack:///./node_modules/crypto-js/mode-ctr.js?");
+
+/***/ }),
+
+/***/ "./node_modules/crypto-js/pad-nopadding.js":
+/*!*************************************************!*\
+  !*** ./node_modules/crypto-js/pad-nopadding.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval(";(function (root, factory, undef) {\n\tif (true) {\n\t\t// CommonJS\n\t\tmodule.exports = exports = factory(__webpack_require__(/*! ./core */ \"./node_modules/crypto-js/core.js\"), __webpack_require__(/*! ./cipher-core */ \"./node_modules/crypto-js/cipher-core.js\"));\n\t}\n\telse {}\n}(this, function (CryptoJS) {\n\n\t/**\n\t * A noop padding strategy.\n\t */\n\tCryptoJS.pad.NoPadding = {\n\t    pad: function () {\n\t    },\n\n\t    unpad: function () {\n\t    }\n\t};\n\n\n\treturn CryptoJS.pad.NoPadding;\n\n}));\n\n//# sourceURL=webpack:///./node_modules/crypto-js/pad-nopadding.js?");
+
+/***/ }),
+
 /***/ "./node_modules/crypto-js/sha1.js":
 /*!****************************************!*\
   !*** ./node_modules/crypto-js/sha1.js ***!
@@ -196,6 +229,18 @@ eval(";(function (root, factory) {\n\tif (true) {\n\t\t// CommonJS\n\t\tmodule.e
 
 /***/ }),
 
+/***/ "./src/Encoder.ts":
+/*!************************!*\
+  !*** ./src/Encoder.ts ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", { value: true });\nvar Hash_1 = __importDefault(__webpack_require__(/*! ./crypto/Hash */ \"./src/crypto/Hash.ts\"));\nvar Cipher_1 = __importDefault(__webpack_require__(/*! ./crypto/Cipher */ \"./src/crypto/Cipher.ts\"));\nvar DecodeCost;\n(function (DecodeCost) {\n    DecodeCost[DecodeCost[\"Zero\"] = 0] = \"Zero\";\n    DecodeCost[DecodeCost[\"Low\"] = 0.2] = \"Low\";\n    DecodeCost[DecodeCost[\"Medium\"] = 1] = \"Medium\";\n    DecodeCost[DecodeCost[\"High\"] = 5] = \"High\";\n    DecodeCost[DecodeCost[\"VeryHigh\"] = 25] = \"VeryHigh\";\n    DecodeCost[DecodeCost[\"Infinite\"] = 125] = \"Infinite\";\n})(DecodeCost = exports.DecodeCost || (exports.DecodeCost = {}));\nvar EncodedMessage = /** @class */ (function () {\n    function EncodedMessage(salt, lock, message) {\n        this.salt = salt;\n        this.lock = lock;\n        this.message = message;\n    }\n    EncodedMessage.prototype.toString = function () {\n        return this.salt + this.lock + this.message;\n    };\n    EncodedMessage.parse = function (saltLength, lockSize) {\n        if (saltLength === void 0) { saltLength = 32; }\n        if (lockSize === void 0) { lockSize = 64; }\n        return null;\n    };\n    return EncodedMessage;\n}());\nexports.EncodedMessage = EncodedMessage;\nvar Encoder = /** @class */ (function () {\n    function Encoder(decodeCost, salt) {\n        if (decodeCost === void 0) { decodeCost = DecodeCost.Low; }\n        this.decodeCost = decodeCost;\n        this.salt = salt ? salt : this.generateRandomSalt();\n    }\n    Encoder.prototype.encode = function (message, randomSalt) {\n        if (randomSalt === void 0) { randomSalt = false; }\n        // Renew salt\n        if (randomSalt)\n            this.generateRandomSalt();\n        var key = this.salt + this.generateKey();\n        var rkey = this.reverseString(key);\n        var lock = Hash_1.default.digest(key);\n        var payload = Cipher_1.default.encrypt(message, rkey);\n        return new EncodedMessage(this.salt, lock, payload);\n    };\n    Encoder.prototype.generateKey = function () {\n        var haystack = this.decodeCost * Encoder.NORMAL_HPS;\n        var needle = this.randomIntegerBetween(Math.sqrt(haystack), haystack);\n        return needle;\n    };\n    Encoder.prototype.generateRandomSalt = function (length) {\n        if (length === void 0) { length = 32; }\n        var output = \"\";\n        for (var i = 0; i < length; i++)\n            output += \"0123456789abcdef\".charAt(this.randomIntegerBetween(0, 15));\n        return output;\n    };\n    Encoder.prototype.reverseString = function (string) {\n        return string\n            .split(\"\")\n            .reverse()\n            .join(\"\");\n    };\n    Encoder.prototype.randomIntegerBetween = function (start, end) {\n        return Math.floor(Math.random() * (end + 1 - start)) + start;\n    };\n    Encoder.NORMAL_HPS = 30000;\n    return Encoder;\n}());\nexports.Encoder = Encoder;\nexports.default = Encoder;\n\n\n//# sourceURL=webpack:///./src/Encoder.ts?");
+
+/***/ }),
+
 /***/ "./src/crypto/Cipher.ts":
 /*!******************************!*\
   !*** ./src/crypto/Cipher.ts ***!
@@ -204,7 +249,7 @@ eval(";(function (root, factory) {\n\tif (true) {\n\t\t// CommonJS\n\t\tmodule.e
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", { value: true });\nvar aes_1 = __importDefault(__webpack_require__(/*! crypto-js/aes */ \"./node_modules/crypto-js/aes.js\"));\nvar enc_utf8_1 = __importDefault(__webpack_require__(/*! crypto-js/enc-utf8 */ \"./node_modules/crypto-js/enc-utf8.js\"));\nvar Cipher = /** @class */ (function () {\n    function Cipher() {\n    }\n    Cipher.encrypt = function (message, key) {\n        var ciphertext = aes_1.default.encrypt(message, key);\n        return ciphertext.toString();\n    };\n    Cipher.decrypt = function (message, key) {\n        var bytes = aes_1.default.decrypt(message.toString(), \"secret key 123\");\n        var plaintext = bytes.toString(enc_utf8_1.default);\n        return plaintext.toString();\n    };\n    return Cipher;\n}());\nexports.default = Cipher;\n\n\n//# sourceURL=webpack:///./src/crypto/Cipher.ts?");
+eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", { value: true });\nvar aes_1 = __importDefault(__webpack_require__(/*! crypto-js/aes */ \"./node_modules/crypto-js/aes.js\"));\nvar mode_ctr_1 = __importDefault(__webpack_require__(/*! crypto-js/mode-ctr */ \"./node_modules/crypto-js/mode-ctr.js\"));\nvar enc_utf8_1 = __importDefault(__webpack_require__(/*! crypto-js/enc-utf8 */ \"./node_modules/crypto-js/enc-utf8.js\"));\nvar enc_hex_1 = __importDefault(__webpack_require__(/*! crypto-js/enc-hex */ \"./node_modules/crypto-js/enc-hex.js\"));\nvar enc_base64_1 = __importDefault(__webpack_require__(/*! crypto-js/enc-base64 */ \"./node_modules/crypto-js/enc-base64.js\"));\nvar pad_nopadding_1 = __importDefault(__webpack_require__(/*! crypto-js/pad-nopadding */ \"./node_modules/crypto-js/pad-nopadding.js\"));\nvar Cipher = /** @class */ (function () {\n    function Cipher() {\n    }\n    Cipher.encrypt = function (message, key) {\n        var cipherText = aes_1.default.encrypt(message, key, {\n            mode: mode_ctr_1.default,\n            padding: pad_nopadding_1.default\n        }).toString();\n        return enc_base64_1.default.parse(cipherText).toString(enc_hex_1.default);\n    };\n    Cipher.decrypt = function (message, key) {\n        var bytes = aes_1.default.decrypt(enc_hex_1.default.parse(message).toString(enc_base64_1.default), key, {\n            mode: mode_ctr_1.default,\n            padding: pad_nopadding_1.default\n        });\n        var plainText = bytes.toString(enc_utf8_1.default);\n        return plainText.toString();\n    };\n    return Cipher;\n}());\nexports.default = Cipher;\n\n\n//# sourceURL=webpack:///./src/crypto/Cipher.ts?");
 
 /***/ }),
 
@@ -228,7 +273,7 @@ eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", { value: true });\nvar Hash_1 = __importDefault(__webpack_require__(/*! ./crypto/Hash */ \"./src/crypto/Hash.ts\"));\nvar Cipher_1 = __importDefault(__webpack_require__(/*! ./crypto/Cipher */ \"./src/crypto/Cipher.ts\"));\nconsole.log(Hash_1.default.digest(\"김현준\").toString());\nvar original = \"김현준\";\nvar enc = Cipher_1.default.encrypt(original, \"qe\");\nconsole.log(enc.toString());\n\n\n//# sourceURL=webpack:///./src/index.ts?");
+eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", { value: true });\nvar Encoder_1 = __importDefault(__webpack_require__(/*! ./Encoder */ \"./src/Encoder.ts\"));\nvar encoder = new Encoder_1.default();\nvar result = encoder.encode(\"hello\", true);\nconsole.log(result.toString());\n\n\n//# sourceURL=webpack:///./src/index.ts?");
 
 /***/ })
 
