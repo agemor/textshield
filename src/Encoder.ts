@@ -1,3 +1,4 @@
+import EncodedMessage from "./EncodedMessage";
 import Hash from "./crypto/Hash";
 import Cipher from "./crypto/Cipher";
 
@@ -10,28 +11,8 @@ export enum DecodeCost {
   Infinite = 125
 }
 
-export class EncodedMessage {
-  salt: string;
-  lock: string;
-  message: string;
-
-  constructor(salt: string, lock: string, message: string) {
-    this.salt = salt;
-    this.lock = lock;
-    this.message = message;
-  }
-
-  toString(): string {
-    return this.salt + this.lock + this.message;
-  }
-
-  static parse(saltLength = 32, lockSize = 64): EncodedMessage {
-    return null;
-  }
-}
-
 export class Encoder {
-  public static NORMAL_HPS = 30000;
+  public static NORMAL_HPS = 200;
 
   decodeCost: DecodeCost;
   salt: string;
@@ -74,7 +55,7 @@ export class Encoder {
   }
 
   private randomIntegerBetween(start: number, end: number): number {
-    return Math.floor(Math.random() * (end + 1 - start)) + start;
+    return Math.floor(Math.random() * (end + 1 - start) + start);
   }
 }
 
