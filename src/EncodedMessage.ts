@@ -14,6 +14,11 @@ export class EncodedMessage {
   }
 
   static parse(hex: string, saltSize = 32, lockSize = 64): EncodedMessage {
+
+    if (hex.length <= saltSize + lockSize) {
+      return null;
+    }
+
     let salt = hex.slice(0, saltSize);
     let lock = hex.slice(saltSize, saltSize + lockSize);
     let message = hex.slice(saltSize + lockSize);
