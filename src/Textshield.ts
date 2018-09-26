@@ -1,6 +1,7 @@
 import Decoder from "./Decoder";
 import EncodedMessage from "./EncodedMessage";
-import { TextDisplay } from "./TextDisplay";
+import TextDisplay from "./TextDisplay";
+import TextStyle from "./TextStyle";
 
 export class Textshield {
   public body: HTMLElement;
@@ -22,7 +23,7 @@ export class Textshield {
 
       if (encodedMessage) {
         let message = this.decoder.decode(encodedMessage);
-        let style = window.getComputedStyle(element);
+        let style = new TextStyle(window.getComputedStyle(element));
         let textDisplay = new TextDisplay(message, style);
 
         //element.textContent = message;
