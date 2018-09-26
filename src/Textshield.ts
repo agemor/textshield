@@ -1,8 +1,8 @@
 import Decoder from "./Decoder";
 import EncodedMessage from "./EncodedMessage";
+import { TextDisplay } from "./TextDisplay";
 
 export class Textshield {
-
   public body: HTMLElement;
   public options: any;
 
@@ -19,19 +19,22 @@ export class Textshield {
     let shieldedElements = this.getShieldedElements();
     for (let element of shieldedElements) {
       let encodedMessage = EncodedMessage.parse(element.textContent);
+
       if (encodedMessage) {
         let message = this.decoder.decode(encodedMessage);
-        element.textContent = message;
+        let style = window.getComputedStyle(element);
+        let textDisplay = new TextDisplay(message, style);
+
+        //element.textContent = message;
+        element.parentNode.replaceChild(textDisplay.getCanvas(), element);
       }
     }
   }
 
   private getShieldedElements(): HTMLElement[] {
-    let elements = this.body.getElementsByTagName("shield")
+    let elements = this.body.getElementsByTagName("shield");
     return Array.prototype.slice.call(elements);
   }
-
-
 }
 
 export default Textshield;
