@@ -10,9 +10,9 @@ export class TextDisplay {
   private canvasContext: CanvasRenderingContext2D;
 
   constructor(text: string, style: TextStyle) {
-    this.devicePixelRatio = 1; //window.devicePixelRatio || 1;
+    this.devicePixelRatio = 3; //window.devicePixelRatio || 1;
 
-    this.text = text;
+    this.text = text + "gPTja";
     this.style = style;
 
     this.createCanvas();
@@ -30,7 +30,7 @@ export class TextDisplay {
     context.font = this.style.fontSize + "px" + " Arial";
 
     let textWidth = context.measureText(this.text).width;
-    let textHeight = this.style.lineHeight;
+    let textHeight = this.style.fontSize;
 
     context.canvas.width = textWidth * this.devicePixelRatio;
     context.canvas.height = textHeight * this.devicePixelRatio;
@@ -41,11 +41,14 @@ export class TextDisplay {
 
     context.font =
       this.style.fontSize * this.devicePixelRatio + "px" + " Arial";
+		
+	  context.textBaseline="bottom"; 
 
+	  
     context.fillText(this.text, 0, textHeight * this.devicePixelRatio);
     context.canvas.style.width = textWidth + "px";
     context.canvas.style.height = textHeight + "px";
-    context.canvas.style.verticalAlign = "bottom";
+    context.canvas.style.verticalAlign = "text-bottom";
   }
 
   public getCanvas(): HTMLCanvasElement {
