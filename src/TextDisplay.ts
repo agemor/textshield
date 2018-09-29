@@ -10,9 +10,9 @@ export class TextDisplay {
   private canvasContext: CanvasRenderingContext2D;
 
   constructor(text: string, style: TextStyle) {
-    this.devicePixelRatio = 3; //window.devicePixelRatio || 1;
+    this.devicePixelRatio = 4; //window.devicePixelRatio || 1;
 
-    this.text = text + "gPTja";
+    this.text = "Phasellu";
     this.style = style;
 
     this.createCanvas();
@@ -27,7 +27,7 @@ export class TextDisplay {
   private updateCanvas(): void {
     let context = this.canvasContext;
 
-    context.font = this.style.fontSize + "px" + " Arial";
+    context.font = this.style.getCanvasFont();
 
     let textWidth = context.measureText(this.text).width;
     let textHeight = this.style.fontSize;
@@ -35,16 +35,12 @@ export class TextDisplay {
     context.canvas.width = textWidth * this.devicePixelRatio;
     context.canvas.height = textHeight * this.devicePixelRatio;
 
-    context.fillStyle = "yellow";
-    context.fillRect(0, 0, context.canvas.width, context.canvas.height);
-    context.fillStyle = "black";
+    context.fillStyle = "red";
+    context.fillStyle = this.style.fontColor;
 
-    context.font =
-      this.style.fontSize * this.devicePixelRatio + "px" + " Arial";
-		
-	  context.textBaseline="bottom"; 
+    context.font = this.style.getCanvasFont(this.devicePixelRatio);
+    context.textBaseline = "bottom";
 
-	  
     context.fillText(this.text, 0, textHeight * this.devicePixelRatio);
     context.canvas.style.width = textWidth + "px";
     context.canvas.style.height = textHeight + "px";
