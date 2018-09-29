@@ -2,6 +2,7 @@ import Decoder from "./Decoder";
 import EncodedMessage from "./EncodedMessage";
 import TextDisplay from "./TextDisplay";
 import TextStyle from "./TextStyle";
+import Base64 from "./encoding/Base64";
 
 export class Textshield {
   public body: HTMLElement;

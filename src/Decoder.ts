@@ -1,7 +1,14 @@
 import EncodedMessage from "./EncodedMessage";
-import Hash from "./crypto/Hash";
-import Cipher from "./crypto/Cipher";
+import Sha256 from "./crypto/Sha256";
+import XorCipher from "./crypto/XorCipher";
 
+/**
+ * Textshield text code decoder
+ * 
+ * @version 1.0.0
+ * @author HyunJun Kim
+ * @license MIT
+ */
 export class Decoder {
 
   public static MAX_ATTEMPTS = 3000;
@@ -17,7 +24,7 @@ export class Decoder {
     let key = encodedMessage.salt + needle;
     let rkey = this.reverseString(key);
 
-    let decodedMessage = Cipher.decrypt(encodedMessage.message, rkey);
+    let decodedMessage = XorCipher.decrypt(encodedMessage.message, rkey);
 
     return decodedMessage;
   }
@@ -25,7 +32,7 @@ export class Decoder {
   private resolveHash(salt: string, lock: string): number {
     let count = 0;
     while (count < Decoder.MAX_ATTEMPTS) {
-      if (Hash.digest(salt + count) == lock) {
+      if (Sha256.hash(salt + count) == lock) {
         return count;
       }
       count++;

@@ -1,5 +1,15 @@
 import Filter from "./Filter";
 
+/**
+ * Sinusoidal distortion effect filter
+ * that renders liquid-like motions to given canvas
+ * Main advantage of using sinusoidal distortion filter is that
+ * text boundaries are not affected while protecting OCR. 
+ * 
+ * @version 1.0.0
+ * @author HyunJun Kim
+ * @license MIT
+ */
 export class SinusoidalDistortionFilter extends Filter {
 
   public amplitude: number;
@@ -10,7 +20,8 @@ export class SinusoidalDistortionFilter extends Filter {
 
   constructor(canvas: HTMLCanvasElement, frequency: number, frameRate: number = 60) {
     super(canvas);
-    console.log(this.canvas.height)
+
+    // Amplitude may vary by the canvas size
     this.amplitude = Math.max((this.canvas.height / 30), 0);
     this.frequency = frequency;
     this.frameRate = frameRate;
@@ -21,7 +32,6 @@ export class SinusoidalDistortionFilter extends Filter {
   private apply(): void {
 
     if (this.frames % 3 == 0) {
-
 
       let target = this.target.data;
       let source = this.source.data;
@@ -49,14 +59,11 @@ export class SinusoidalDistortionFilter extends Filter {
           target[dest + 3] = source[src + 3];
         }
       }
-
       this.context.putImageData(this.target, 0, 0);
-
     }
     this.frames++;
 
     window.requestAnimationFrame(() => this.apply());
-
   }
 
 }

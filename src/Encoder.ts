@@ -1,6 +1,7 @@
 import EncodedMessage from "./EncodedMessage";
-import Hash from "./crypto/Hash";
-import Cipher from "./crypto/Cipher";
+import Sha256 from "./crypto/Sha256";
+import XorCipher from "./crypto/XorCipher";
+import { Base64 } from "./encoding/Base64";
 
 export enum DecodeCost {
   Zero = 0,
@@ -11,6 +12,13 @@ export enum DecodeCost {
   Infinite = 125
 }
 
+/**
+ * Textshield text code generator
+ * 
+ * @version 1.0.0
+ * @author HyunJun Kim
+ * @license MIT
+ */
 export class Encoder {
   public static NORMAL_HPS = 200;
 
@@ -28,8 +36,8 @@ export class Encoder {
 
     let key: string = this.salt + this.generateKey();
     let rkey: string = this.reverseString(key);
-    let lock = Hash.digest(key);
-    let payload = Cipher.encrypt(message, rkey);
+    let lock = Sha256.hash(key);
+    let payload = XorCipher.encrypt(message, rkey);
 
     return new EncodedMessage(this.salt, lock, payload);
   }
@@ -40,10 +48,10 @@ export class Encoder {
     return needle;
   }
 
-  private generateRandomSalt(length = 32): string {
+  private generateRandomSalt(length = 16): string {
     let output = "";
     for (let i = 0; i < length; i++)
-      output += "0123456789abcdef".charAt(this.randomIntegerBetween(0, 15));
+      output += Base64.CharacterTable.charAt(this.randomIntegerBetween(0, 64));
     return output;
   }
 

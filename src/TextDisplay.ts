@@ -16,7 +16,7 @@ export class TextDisplay {
   constructor(text: string, style: TextStyle) {
     this.devicePixelRatio = window.devicePixelRatio || 2;
 
-    this.text = "hyunjun.leo.kim@gmail.com";
+    this.text = text;
     this.style = style;
 
     this.createCanvas();
@@ -36,7 +36,7 @@ export class TextDisplay {
     context.font = this.style.getCanvasFont();
 
     let textWidth = context.measureText(this.text).width;
-    let textHeight = this.style.fontSize;
+    let textHeight = this.style.fontSize * 1.1;
 
     context.canvas.width = textWidth * this.devicePixelRatio;
     context.canvas.height = textHeight * this.devicePixelRatio;

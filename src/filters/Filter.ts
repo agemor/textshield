@@ -1,3 +1,10 @@
+/**
+ * Superclass for all filter effects
+ * 
+ * @version 1.0.0
+ * @author HyunJun Kim
+ * @license MIT
+ */
 export class Filter {
 
   protected canvas: HTMLCanvasElement;
@@ -13,6 +20,9 @@ export class Filter {
     this.initialize();
   }
 
+  /**
+   * Setup basic helper members for filter operation
+   */
   private initialize() {
     let width = this.canvas.width;
     let height = this.canvas.height;
