@@ -1,7 +1,7 @@
 import EncodedMessage from "./EncodedMessage";
 import Sha256 from "./crypto/Sha256";
 import XorCipher from "./crypto/XorCipher";
-import { Base64 } from "./encoding/Base64";
+import Base64 from "./encoding/Base64";
 
 export enum DecodeCost {
   Zero = 0,

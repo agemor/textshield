@@ -21,7 +21,9 @@ export class TextDisplay {
 
     this.createCanvas();
     this.initializeCanvas();
+  }
 
+  public applyDistortion(): void {
     this.filter = new SinusoidalDistortionFilter(this.canvas, 0.5);
   }
 
@@ -53,12 +55,6 @@ export class TextDisplay {
     context.canvas.style.verticalAlign = "text-bottom";
 
     console.log(context.canvas.width, context.canvas.style.width)
-
-    //window.requestAnimationFrame(this.updateCanvas);
-  }
-
-  private updateCanvas(): void {
-    window.requestAnimationFrame(this.updateCanvas);
   }
 
   public getCanvas(): HTMLCanvasElement {

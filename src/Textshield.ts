@@ -2,9 +2,8 @@ import Decoder from "./Decoder";
 import EncodedMessage from "./EncodedMessage";
 import TextDisplay from "./TextDisplay";
 import TextStyle from "./TextStyle";
-import Base64 from "./encoding/Base64";
 
-export class Textshield {
+export class TextShield {
   public body: HTMLElement;
   public options: any;
 
@@ -21,14 +20,21 @@ export class Textshield {
     let shieldedElements = this.getShieldedElements();
     for (let element of shieldedElements) {
       let encodedMessage = EncodedMessage.parse(element.textContent);
+      let mode = (element.getAttribute("mode") || "normal").toLowerCase().trim();
 
       if (encodedMessage) {
         let message = this.decoder.decode(encodedMessage);
-        let style = new TextStyle(window.getComputedStyle(element));
-        let textDisplay = new TextDisplay(message, style);
 
-        //element.textContent = message;
-        element.parentNode.replaceChild(textDisplay.getCanvas(), element);
+        if (mode == "plain") {
+          element.textContent = message;
+        } else {
+          let style = new TextStyle(window.getComputedStyle(element));
+          let textDisplay = new TextDisplay(message, style);
+          element.parentNode.replaceChild(textDisplay.getCanvas(), element);
+          if (mode == "distort") {
+            textDisplay.applyDistortion();
+          }
+        }
       }
     }
   }
@@ -39,4 +45,4 @@ export class Textshield {
   }
 }
 
-export default Textshield;
+export default TextShield;
