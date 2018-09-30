@@ -10,11 +10,11 @@ export class EncodedMessage {
   }
 
   toString(): string {
+    console.log(this.salt, this.lock, this.message);
     return this.salt + this.lock + this.message;
   }
 
   static parse(hex: string, saltSize = 16, lockSize = 44): EncodedMessage {
-
     if (hex.length <= saltSize + lockSize) {
       return null;
     }
