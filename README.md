@@ -45,15 +45,12 @@ Using the TextShield [web encoder](https://agemor.github.io/textshield/), we can
 Please email me at <shield>oIeOu5qmeBX0YXHpLZNWN/6BcAwf/j8KJ3LXcEWOE7VacvgSGOsskNLrALw=XU1QHTg0PHA9OgQ=AVkQYQYmAg==</shield>
 ```
 
-Or by using server-side TextShield encoding libaray, desired text can be encoded dynamically. Currently, [Node.js](https://github.com/agemor/textshield-node/) and [PHP](https://agemor.github.io/textshield-php) plugin is supported.
+Or by using server-side TextShield encoding libaray, desired text can be encoded dynamically. Currently, [Node.js](https://github.com/agemor/textshield-node/) plugin is supported.
 
-```php
-Please email me at
-<?
-echo "<shield>";
-echo TextShield.encode("example@example.com", TextShield.Cost.Low);
-echo "</shield>";
-?>
+```html
+Please email me at <shield>
+<%= TextShield.encode("example@example.com", DecodeCost.Low); %>
+</shield>
 ```
 
 ### 2. Text rendering
