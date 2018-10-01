@@ -21,7 +21,7 @@ TextShield can be installed with npm with TypeScript support.
 $ npm install textshield
 ```
 
-Modules like `Encoder` is reachable as named module while default export indicates `TextShield` module.
+Modules like `Encoder` are reachable as named module while default export indicates `TextShield` module.
 
 ```javascript
 import TextShield, { Encoder, Decoder } from "textshield";
@@ -29,7 +29,7 @@ import TextShield, { Encoder, Decoder } from "textshield";
 
 ## Usage
 
-With the presence of TextShield plugin, texts that contains sensitive information can protected from bots with following steps.
+With the presence of TextShield plugin, texts that contain sensitive information can protected from bots with following steps.
 
 ### 1. Text encoding
 
