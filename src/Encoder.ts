@@ -14,7 +14,7 @@ export enum DecodeCost {
 
 /**
  * Textshield text code generator
- * 
+ *
  * @version 1.0.0
  * @author HyunJun Kim
  * @license MIT
@@ -32,7 +32,7 @@ export class Encoder {
 
   public encode(message: string, randomSalt = false): EncodedMessage {
     // Renew salt
-    if (randomSalt) this.generateRandomSalt();
+    if (randomSalt) this.salt = this.generateRandomSalt();
 
     let key: string = this.salt + this.generateKey();
     let rkey: string = this.reverseString(key);

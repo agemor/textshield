@@ -53,8 +53,6 @@ export class TextDisplay {
     context.canvas.style.width = textWidth + "px";
     context.canvas.style.height = textHeight + "px";
     context.canvas.style.verticalAlign = "text-bottom";
-
-    console.log(context.canvas.width, context.canvas.style.width)
   }
 
   public getCanvas(): HTMLCanvasElement {

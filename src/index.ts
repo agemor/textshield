@@ -1,6 +1,7 @@
 import TextShield from "./TextShield";
-
 import Encoder from "./Encoder";
+
+/*
 import Decoder from "./Decoder";
 import EncodedMessage from "./EncodedMessage";
 
@@ -14,6 +15,9 @@ console.log(enc);
 let dec = decoder.decode(EncodedMessage.parse(enc));
 
 console.log(dec);
+*/
+
+(<any>window).TextShieldEncoder = new Encoder();
 
 window.onload = function(): void {
   let textshield = new TextShield(document.body, null);
