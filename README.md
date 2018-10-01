@@ -48,11 +48,12 @@ Please email me at <shield>oIeOu5qmeBX0YXHpLZNWN/6BcAwf/j8KJ3LXcEWOE7VacvgSGOssk
 Or by using server-side TextShield encoding libaray, desired text can be encoded dynamically. Currently, [Node.js](https://github.com/agemor/textshield-node/) and [PHP](https://agemor.github.io/textshield-php) plugin is supported.
 
 ```php
-Please email me at <shield>
+Please email me at
 <?
+echo "<shield>";
 echo TextShield.encode("example@example.com", TextShield.Cost.Low);
+echo "</shield>";
 ?>
-</shield>
 ```
 
 ### 2. Text rendering
