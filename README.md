@@ -41,14 +41,18 @@ Please email me at example@example.com
 
 Using the TextShield [web encoder](https://agemor.github.io/textshield/), we can convert `example@example.com` to protected code.
 
-```html
+```xml
 Please email me at <shield>oIeOu5qmeBX0YXHpLZNWN/6BcAwf/j8KJ3LXcEWOE7VacvgSGOsskNLrALw=XU1QHTg0PHA9OgQ=AVkQYQYmAg==</shield>
 ```
 
 Or by using server-side TextShield encoding libaray, desired text can be encoded dynamically. Currently, [Node.js](https://github.com/agemor/textshield-node/) and [PHP](https://agemor.github.io/textshield-php) plugin is supported.
 
 ```php
-Please email me at <shield><? echo TextShield.encode("example@example.com", TextShield.Cost.Low); ?></shield>
+Please email me at <shield>
+<?
+echo TextShield.encode("example@example.com", TextShield.Cost.Low);
+?>
+</shield>
 ```
 
 ### 2. Text rendering
