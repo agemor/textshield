@@ -42,8 +42,6 @@ export class TextDisplay {
 
     context.canvas.width = textWidth * this.devicePixelRatio;
     context.canvas.height = textHeight * this.devicePixelRatio;
-
-    context.fillStyle = "red";
     context.fillStyle = this.style.fontColor;
 
     context.font = this.style.getCanvasFont(this.devicePixelRatio);
