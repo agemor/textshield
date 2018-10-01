@@ -60,9 +60,19 @@ echo "</shield>";
 
 Three text rendering options are available.
 
-- `PLAIN`
-- `NORMAL`
-- `DISTORT`
+- `PLAIN`: Display text as normal page text. Best in user experience but cannot protect bots with JavaScript engine.
+- `NORMAL`: Render text in `canvas` element. Can protect most bots.
+- `DISTORT`: Apply live distortion effect to canvas rendered text. It is able to protect rare bots that integrates OCR technology.
+
+Rendering options are set through `mode` attribute in `<shield>` tag.
+
+```xml
+<shield mode="distort"> ... </shield>
+```
+
+## Contribution
+
+Any kind of contributions or questions are heartly welcomed.
 
 ## License
 
