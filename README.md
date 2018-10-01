@@ -47,7 +47,7 @@ Please email me at <shield>oIeOu5qmeBX0YXHpLZNWN/6BcAwf/j8KJ3LXcEWOE7VacvgSGOssk
 
 Or by using server-side TextShield encoding libaray, desired text can be encoded dynamically. Currently, [Node.js](https://github.com/agemor/textshield-node/) plugin is supported.
 
-```html
+```
 Please email me at <shield>
 <%= TextShield.encode("example@example.com", DecodeCost.Low); %>
 </shield>
