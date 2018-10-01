@@ -1,3 +1,13 @@
+/**
+ * TextShield Text Style
+ *
+ * Parse required text style to reconstruct canvas text that matches original appereances.
+ * Usually, given css style is calculated by getComputedStyle() function.
+ *
+ * @version 1.0.0
+ * @author HyunJun Kim
+ * @license MIT
+ */
 export class TextStyle {
   public fontSize: number;
   public fontColor: string;
@@ -12,6 +22,11 @@ export class TextStyle {
     }
   }
 
+  /**
+   * Retrieve basic font styling properties
+   *
+   * @param cssStyle
+   */
   private loadCssStyle(cssStyle: CSSStyleDeclaration) {
     let get = (id: string): string => cssStyle.getPropertyValue(id);
     let pixelToNumber = (pix: string): number => Number(pix.split("px")[0]);
@@ -24,6 +39,11 @@ export class TextStyle {
     this.fontColor = get("color");
   }
 
+  /**
+   * Write text style in canvas format
+   *
+   * @param scale
+   */
   public getCanvasFont(scale: number = 1): string {
     let ws = " ";
     let canvasFont =

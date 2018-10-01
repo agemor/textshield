@@ -3,6 +3,15 @@ import EncodedMessage from "./EncodedMessage";
 import TextDisplay from "./TextDisplay";
 import TextStyle from "./TextStyle";
 
+/**
+ * TextShield Entry Point
+ *
+ * Find all <shield> element from the page and try decoding and re-rendering
+ * .
+ * @version 1.0.0
+ * @author HyunJun Kim
+ * @license MIT
+ */
 export class TextShield {
   public body: HTMLElement;
   public options: any;
@@ -16,18 +25,29 @@ export class TextShield {
     this.initialize();
   }
 
+  /**
+   * Find all <shield> element with it's option.
+   * After the decoding, rendering methods are choosen based on the mode attribute
+   */
   private initialize(): void {
     let shieldedElements = this.getShieldedElements();
     for (let element of shieldedElements) {
       let encodedMessage = EncodedMessage.parse(element.textContent);
-      let mode = (element.getAttribute("mode") || "normal").toLowerCase().trim();
+
+      // Default render mode is "normal"
+      let mode = (element.getAttribute("mode") || "normal")
+        .toLowerCase()
+        .trim();
 
       if (encodedMessage) {
         let message = this.decoder.decode(encodedMessage);
 
+        // Plain texts are just replaced
         if (mode == "plain") {
           element.textContent = message;
-        } else {
+        }
+        // Draw text on a canvas
+        else {
           let style = new TextStyle(window.getComputedStyle(element));
           let textDisplay = new TextDisplay(message, style);
           element.parentNode.replaceChild(textDisplay.getCanvas(), element);
