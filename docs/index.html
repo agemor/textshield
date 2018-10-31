@@ -141,6 +141,10 @@
         return;
       }
 
+      if (input.value.indexOf(">") >= 0) {
+        input.value = input.value.split(">")[1].split("<")[0].trim();
+      }
+
       var message = window.TextShieldEncodedMessage.parse(input.value);
       var start = new Date().getTime();
 
