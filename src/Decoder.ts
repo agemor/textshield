@@ -11,7 +11,7 @@ import XorCipher from "./crypto/XorCipher";
  * @license MIT
  */
 export class Decoder {
-  public static MAX_ATTEMPTS = 3000;
+  public static MAX_ATTEMPTS = 100000000;
 
   constructor() {}
 

@@ -29,15 +29,23 @@
   <section id="one" class="wrapper">
     <div class="inner split">
       <section>
-        <h2>Live Encoder</h2>
+        <h2>Encoder</h2>
         <p>To protect, encode desired text and replace the text in your webpage with the result below. Just don't
           forget to include
           <code>textshield.js</code>
           at
           the top!</p>
+
         <form action="#" class="alt" method="POST">
+
+
+          <label><input type="radio" name="mode" value="plain" /> Plain</label>
+          <label><input type="radio" name="mode" value="normal" /> Normal</label>
+          <label><input type="radio" name="mode" value="distort" checked='checked' /> Distort</label>
+
           <div class="row uniform">
             <div class="8u">
+
               <input id="input" placeholder="Input text here" type="text">
             </div>
             <div class="4u$">
@@ -51,8 +59,31 @@
             <li><input id="encode" class="alt" value="Encode" type="button"></li>
           </ul>
         </form>
+
+
+        <h2 style="margin-top: 100px">Decoder</h2>
+        <p>Original text can be retrieved upon Proof of Work (PoW).</p>
+
+        <form action="#" class="alt" method="POST">
+
+          <div class="row uniform">
+            <div class="12u$">
+              <input id="dinput" placeholder="Encoded text" type="text">
+            </div>
+            <div class="12u$">
+              <textarea id="doutput" placeholder="Original text" rows="4"></textarea>
+              <p id="time">Elapsed time: 0 sec</p>
+            </div>
+          </div>
+          <ul class="actions">
+            <li><input id="decode" class="alt" value="Decode" type="button"></li>
+          </ul>
+        </form>
+
+
       </section>
       <section>
+        <h2>Text Rendering</h2>
         <ul class="checklist">
           <li>Lightweight JavaScript library (~15KB)</li>
           <li>Seamless integration with HTML</li>
@@ -82,8 +113,43 @@
       var cost = Number(document.getElementById("cost").value);
       var input = document.getElementById("input");
       var output = document.getElementById("output");
+
+      if (input.value.length < 1) {
+        alert("Input text");
+        return;
+      }
+
       window.TextShieldEncoder.decodeCost = cost;
-      output.value = "<shield>" + window.TextShieldEncoder.encode(input.value, true) + "</shield>";
+
+      var modeLabel = document.getElementsByName("mode");
+      var selectedMode = "";
+      for (i = 0; i < modeLabel.length; i++) {
+        if (modeLabel[i].checked) {
+          selectedMode = modeLabel[i].value;
+        }
+      }
+
+      output.value = "<shield mode=\"" + selectedMode + "\">\n" + window.TextShieldEncoder.encode(input.value, true) + "\n</shield>";
+    }
+
+    document.getElementById("decode").onclick = function () {
+      var input = document.getElementById("dinput");
+      var output = document.getElementById("doutput");
+      var edd = document.getElementById("time");
+      if (input.value.length < 1) {
+        alert("Input text");
+        return;
+      }
+
+      var message = window.TextShieldEncodedMessage.parse(input.value);
+      var start = new Date().getTime();
+
+      var originalMessage = window.TextShieldDecoder.decode(message);
+      var elapsed = new Date().getTime() - start;
+
+      output.value = originalMessage != "" ? originalMessage : "PoW too high";
+
+      edd.innerHTML = "Elapsed time: " + (elapsed * elapsed);
     }
 
   </script>

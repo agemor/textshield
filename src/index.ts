@@ -6,6 +6,8 @@ import TextDisplay from "./TextDisplay";
 
 // Add window module for encoding requirements
 (<any>window).TextShieldEncoder = new Encoder();
+(<any>window).TextShieldDecoder = new Decoder();
+(<any>window).TextShieldEncodedMessage = EncodedMessage;
 
 window.onload = function(): void {
   let textshield = new TextShield(document.body, null);
