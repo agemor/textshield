@@ -38,7 +38,7 @@ export class TextShield {
       let mode = (element.getAttribute("mode") || "normal")
         .toLowerCase()
         .trim();
-
+console.log(mode)
       if (encodedMessage) {
         let message = this.decoder.decode(encodedMessage);
 

@@ -1,4 +1,4 @@
-import TextShield from "./TextShield";
+import TextShield from "./Textshield";
 import Encoder from "./Encoder";
 import Decoder from "./Decoder";
 import EncodedMessage from "./EncodedMessage";
@@ -9,8 +9,14 @@ import TextDisplay from "./TextDisplay";
 (<any>window).TextShieldDecoder = new Decoder();
 (<any>window).TextShieldEncodedMessage = EncodedMessage;
 
+function load() {
+	let textshield = new TextShield(document.body, null);
+}
+
+(<any>window).TextShieldLoad = load;
+
 window.onload = function(): void {
-  let textshield = new TextShield(document.body, null);
+  load();
 };
 
 export default TextShield;

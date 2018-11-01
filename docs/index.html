@@ -79,6 +79,24 @@
             <li><input id="decode" class="alt" value="Decode" type="button"></li>
           </ul>
         </form>
+		  
+		  <h2 style="margin-top: 100px">Renderer</h2>
+        <p>Input protected result to view rendererd result</p>
+
+        <form action="#" class="alt" method="POST">
+
+          <div class="row uniform">
+            <div class="12u$">
+              <input id="rinput" placeholder="Encoded text" type="text">
+				<h2 id="routput">
+				</h2>
+				</div>
+            </div>
+                     </div>
+          <ul class="actions">
+            <li><input id="render" class="alt" value="Render" type="button"></li>
+          </ul>
+        </form>
 
 
       </section>
@@ -129,7 +147,7 @@
         }
       }
 
-      output.value = "<shield mode=\"" + selectedMode + "\">\n" + window.TextShieldEncoder.encode(input.value, true) + "\n</shield>";
+      output.value = "<shield mode=\"" + selectedMode + "\">" + window.TextShieldEncoder.encode(input.value, true) + "</shield>";
     }
 
     document.getElementById("decode").onclick = function () {
@@ -154,6 +172,22 @@
       output.value = originalMessage != "" ? originalMessage : "PoW too high";
 
       edd.innerHTML = "Elapsed time: " + (elapsed * elapsed);
+    }
+	
+	document.getElementById("render").onclick = function () {
+      var input = document.getElementById("rinput");
+      var output = document.getElementById("routput");
+      if (input.value.length < 1) {
+        alert("Input text");
+        return;
+      }
+
+      output.innerHTML = input.value;
+		input.value = "";
+		console.log("sdsd")
+		window.TextShieldLoad();
+		console.log("sdsd")
+		
     }
 
   </script>

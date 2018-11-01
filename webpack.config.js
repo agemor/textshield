@@ -18,7 +18,7 @@ module.exports = {
   },
   output: {
     filename: "textshield.js",
-    path: path.resolve(__dirname, "dist")
+    path: path.resolve(__dirname, "docs")
   },
   optimization: {
     minimizer: [new UglifyJsPlugin()]
