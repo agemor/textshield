@@ -18,8 +18,8 @@
       <section>
         <img src="images/textshield-logo.png" class="title-logo" />
         <span>
-          <h2>Text
-            <shield mode="distort" value="Dwj9nF31N5DOEpu15YwVmm5I4/IEPS0mG4yc6lQUdegO5thLEHZKEASMv/s=Y1kcFSkr" />
+          <h2>
+            Text<shield mode="distort" value="Dwj9nF31N5DOEpu15YwVmm5I4/IEPS0mG4yc6lQUdegO5thLEHZKEASMv/s=Y1kcFSkr"></shield>
             1.0</h2>
           <p>TextShield protects sensitive information aganist unwanted web crawlers/scrapers.</p>
         </span>
@@ -109,15 +109,14 @@
           <li>Seamless integration with HTML</li>
           <li>PoW based decode protection</li>
           <li>Three text rendering modes: <br /><code>
-
-              <shield mode="plain" value="CRbMCzO4cWYl5pMNuZCydzlBKf7YWtiCcQs01bJscx5qTNQrFXqK2dqFAnk=YAIMOXs=" />
+              <shield mode="plain" value="CRbMCzO4cWYl5pMNuZCydzlBKf7YWtiCcQs01bJscx5qTNQrFXqK2dqFAnk=YAIMOXs="></shield>
             </code>,
             <code>
-              <shield mode="normal" value="sskTormkjEymov006MyAWy1O0sGB/b53/T0KNrPjszDTbpZx7sjEkilpweA=fn9iOy4h" />
+              <shield mode="normal" value="sskTormkjEymov006MyAWy1O0sGB/b53/T0KNrPjszDTbpZx7sjEkilpweA=fn9iOy4h"></shield>
             </code>
             and
             <code>
-              <shield mode="distort" value="lESWjzxfHoBn0H/VEGveeQjOt8ObWKkqC3P9ExV2S+KDAXnG6OypCAZR3KY=dB98HH88Fg==" />
+              <shield mode="distort" value="lESWjzxfHoBn0H/VEGveeQjOt8ObWKkqC3P9ExV2S+KDAXnG6OypCAZR3KY=dB98HH88Fg=="></shield>
             </code>
             (Try it yourself!)
           </li>
@@ -174,7 +173,7 @@
 
       encodeOutputText.value = "<shield mode=\"" + selectedMode +
         "\" value=\"" + window.TextShieldEncoder.encode(input, true) +
-        "\" />";
+        "\"></shield>";
     }
 
     decodeButton.onclick = function () {
