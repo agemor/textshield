@@ -18,7 +18,8 @@
       <section>
         <img src="images/textshield-logo.png" class="title-logo" />
         <span>
-          <h2>Text<shield mode="distort">Dwj9nF31N5DOEpu15YwVmm5I4/IEPS0mG4yc6lQUdegO5thLEHZKEASMv/s=Y1kcFSkr</shield>
+          <h2>Text
+            <shield mode="distort" value="Dwj9nF31N5DOEpu15YwVmm5I4/IEPS0mG4yc6lQUdegO5thLEHZKEASMv/s=Y1kcFSkr" />
             1.0</h2>
           <p>TextShield protects sensitive information aganist unwanted web crawlers/scrapers.</p>
         </span>
@@ -39,24 +40,26 @@
         <form action="#" class="alt" method="POST">
 
 
-          <label><input type="radio" name="mode" value="plain" /> Plain</label>
-          <label><input type="radio" name="mode" value="normal" /> Normal</label>
-          <label><input type="radio" name="mode" value="distort" checked='checked' /> Distort</label>
-
           <div class="row uniform">
             <div class="8u">
 
-              <input id="input" placeholder="Input text here" type="text">
+              <input id="encodeInput" placeholder="Input text here" type="text">
             </div>
             <div class="4u$">
-              <input id="cost" placeholder="Decode cost" type="text" value="1">
+              <input id="encodeCost" placeholder="Decode cost" type="text" value="1">
             </div>
+
+            <label style="display: inline;"><input type="radio" name="mode" value="plain" /> Plain</label>
+            <label style="display: inline;"><input type="radio" name="mode" value="normal" /> Normal</label>
+            <label style="display: inline;"><input type="radio" name="mode" value="distort" checked='checked' />
+              Distort</label>
+
             <div class="12u$">
-              <textarea id="output" placeholder="Protected text" rows="4"></textarea>
+              <textarea id="encodeOutput" placeholder="Protected text" rows="4"></textarea>
             </div>
           </div>
           <ul class="actions">
-            <li><input id="encode" class="alt" value="Encode" type="button"></li>
+            <li><input id="encodeButton" class="alt" value="Encode" type="button"></li>
           </ul>
         </form>
 
@@ -68,33 +71,32 @@
 
           <div class="row uniform">
             <div class="12u$">
-              <input id="dinput" placeholder="Encoded text" type="text">
+              <input id="decodeInput" placeholder="Encoded text" type="text">
             </div>
             <div class="12u$">
-              <textarea id="doutput" placeholder="Original text" rows="4"></textarea>
-              <p id="time">Elapsed time: 0 sec</p>
+              <textarea id="decodeOutput" placeholder="Original text" rows="4"></textarea>
+              <p id="decodeTime">Elapsed time: 0 sec</p>
             </div>
           </div>
           <ul class="actions">
-            <li><input id="decode" class="alt" value="Decode" type="button"></li>
+            <li><input id="decodeButton" class="alt" value="Decode" type="button"></li>
           </ul>
         </form>
-		  
-		  <h2 style="margin-top: 100px">Renderer</h2>
+
+        <h2 style="margin-top: 100px">Renderer</h2>
         <p>Input protected result to view rendererd result</p>
 
         <form action="#" class="alt" method="POST">
 
           <div class="row uniform">
             <div class="12u$">
-              <input id="rinput" placeholder="Encoded text" type="text">
-				<h2 id="routput">
-				</h2>
-				</div>
+              <input id="renderInput" placeholder="Encoded text" type="text">
+              <h2 id="renderOutput">
+              </h2>
             </div>
-                     </div>
+          </div>
           <ul class="actions">
-            <li><input id="render" class="alt" value="Render" type="button"></li>
+            <li><input id="renderButton" class="alt" value="Render" type="button"></li>
           </ul>
         </form>
 
@@ -106,10 +108,17 @@
           <li>Lightweight JavaScript library (~15KB)</li>
           <li>Seamless integration with HTML</li>
           <li>PoW based decode protection</li>
-          <li>Three text rendering modes: <br /><code><shield mode="plain">CRbMCzO4cWYl5pMNuZCydzlBKf7YWtiCcQs01bJscx5qTNQrFXqK2dqFAnk=YAIMOXs=</shield></code>,
-            <code><shield mode="normal">sskTormkjEymov006MyAWy1O0sGB/b53/T0KNrPjszDTbpZx7sjEkilpweA=fn9iOy4h</shield></code>
+          <li>Three text rendering modes: <br /><code>
+
+              <shield mode="plain" value="CRbMCzO4cWYl5pMNuZCydzlBKf7YWtiCcQs01bJscx5qTNQrFXqK2dqFAnk=YAIMOXs=" />
+            </code>,
+            <code>
+              <shield mode="normal" value="sskTormkjEymov006MyAWy1O0sGB/b53/T0KNrPjszDTbpZx7sjEkilpweA=fn9iOy4h" />
+            </code>
             and
-            <code><shield mode="distort">lESWjzxfHoBn0H/VEGveeQjOt8ObWKkqC3P9ExV2S+KDAXnG6OypCAZR3KY=dB98HH88Fg==</shield></code>
+            <code>
+              <shield mode="distort" value="lESWjzxfHoBn0H/VEGveeQjOt8ObWKkqC3P9ExV2S+KDAXnG6OypCAZR3KY=dB98HH88Fg==" />
+            </code>
             (Try it yourself!)
           </li>
           <li>Support server-side textshield encoding library (Node.js and PHP)</li>
@@ -127,17 +136,33 @@
 
 
   <script>
-    document.getElementById("encode").onclick = function () {
-      var cost = Number(document.getElementById("cost").value);
-      var input = document.getElementById("input");
-      var output = document.getElementById("output");
+    // DOM UI Elements
+    var encodeButton = document.getElementById("encodeButton");
+    var encodeInputText = document.getElementById("encodeInput");
+    var encodeOutputText = document.getElementById("encodeOutput");
+    var encodeCostText = document.getElementById("encodeCost");
 
-      if (input.value.length < 1) {
-        alert("Input text");
+    var decodeButton = document.getElementById("decodeButton");
+    var decodeInputText = document.getElementById("decodeInput");
+    var decodeOutputText = document.getElementById("decodeOutput");
+    var decodeTimeText = document.getElementById("decodeTime");
+
+    var renderButton = document.getElementById("renderButton");
+    var renderInputText = document.getElementById("renderInput");
+    var renderOutputContainer = document.getElementById("renderOutput");
+
+    // Encode
+    encodeButton.onclick = function () {
+
+      var input = encodeInputText.value.trim();
+      var cost = Number(encodeCostText.value);
+
+      if (input.length < 1) {
+        alert("Input empty");
         return;
       }
 
-      window.TextShieldEncoder.decodeCost = cost;
+      window.TextShieldEncoder.decodeCost = cost
 
       var modeLabel = document.getElementsByName("mode");
       var selectedMode = "";
@@ -147,49 +172,52 @@
         }
       }
 
-      output.value = "<shield mode=\"" + selectedMode + "\">" + window.TextShieldEncoder.encode(input.value, true) + "</shield>";
+      encodeOutputText.value = "<shield mode=\"" + selectedMode +
+        "\" value=\"" + window.TextShieldEncoder.encode(input, true) +
+        "\" />";
     }
 
-    document.getElementById("decode").onclick = function () {
-      var input = document.getElementById("dinput");
-      var output = document.getElementById("doutput");
-      var edd = document.getElementById("time");
-      if (input.value.length < 1) {
-        alert("Input text");
+    decodeButton.onclick = function () {
+
+      var input = decodeInputText.value.trim();
+
+      if (input.length < 1) {
+        alert("Input empty");
         return;
       }
 
-      if (input.value.indexOf(">") >= 0) {
-        input.value = input.value.split(">")[1].split("<")[0].trim();
+      var value = "";
+
+      if (input.indexOf("value=\"") >= 0) {
+        value = input.split("value=\"")[1].split("\"")[0].trim();
       }
 
-      var message = window.TextShieldEncodedMessage.parse(input.value);
+      if (value.length < 1) {
+        alert("Invalid statement");
+        return;
+      }
+
+      var message = window.TextShieldEncodedMessage.parse(value);
       var start = new Date().getTime();
 
       var originalMessage = window.TextShieldDecoder.decode(message);
       var elapsed = new Date().getTime() - start;
 
-      output.value = originalMessage != "" ? originalMessage : "PoW too high";
+      decodeOutputText.value = originalMessage != "" ? originalMessage : "PoW too high";
 
-      edd.innerHTML = "Elapsed time: " + (elapsed * elapsed);
+      decodeTimeText.innerHTML = "Elapsed time: " + (elapsed * elapsed);
     }
-	
-	document.getElementById("render").onclick = function () {
-      var input = document.getElementById("rinput");
-      var output = document.getElementById("routput");
-      if (input.value.length < 1) {
+
+    renderButton.onclick = function () {
+      var input = renderInputText.value.trim();
+      if (input.length < 1) {
         alert("Input text");
         return;
       }
 
-      output.innerHTML = input.value;
-		input.value = "";
-		console.log("sdsd")
-		window.TextShieldLoad();
-		console.log("sdsd")
-		
+      renderOutputContainer.innerHTML = input;
+      window.TextShieldLoad();
     }
-
   </script>
 
 </body>

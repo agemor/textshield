@@ -32,16 +32,18 @@ export class TextShield {
   private initialize(): void {
     let shieldedElements = this.getShieldedElements();
     for (let element of shieldedElements) {
-      let encodedMessage = EncodedMessage.parse(element.textContent);
+
+      let value = (element.getAttribute("value") || "").trim();
 
       // Default render mode is "normal"
       let mode = (element.getAttribute("mode") || "normal")
         .toLowerCase()
         .trim();
-console.log(mode)
+
+      let encodedMessage = EncodedMessage.parse(value);
+
       if (encodedMessage) {
         let message = this.decoder.decode(encodedMessage);
-
         // Plain texts are just replaced
         if (mode == "plain") {
           element.textContent = message;
