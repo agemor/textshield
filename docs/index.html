@@ -1,302 +1,237 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>TextShield Demo</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!--[if lte IE 8
+<head>
+  <title>TextShield Demo</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!--[if lte IE 8
       ]><script src="assets/js/ie/html5shiv.js"></script
     ><![endif]-->
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <script src="./textshield.js"></script>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <script src="./textshield.js"></script>
 
-    <!--[if lte IE 9
+  <!--[if lte IE 9
       ]><link rel="stylesheet" href="assets/css/ie9.css"
     /><![endif]-->
-  </head>
+</head>
 
-  <body>
-    <section id="banner">
-      <div class="inner split">
-        <section>
-          <img src="images/textshield-logo.png" class="title-logo" />
-          <span>
-            <h2>
-              Text<shield
-                mode="distort"
-                value="Dwj9nF31N5DOEpu15YwVmm5I4/IEPS0mG4yc6lQUdegO5thLEHZKEASMv/s=Y1kcFSkr"
-              ></shield>
-              1.0
-            </h2>
-            <p>
-              TextShield
-              <shield
-                mode="distort"
-                value="MH5u0J85G0XmVxFfZtSpn9X7d6HIUv4NBm6XpZtXQonliKjMOB5kHxLlw4M=RUFeEiMbIh4="
-              ></shield>
-              sensitive information aganist unwanted web crawlers/scrapers.
-            </p>
-          </span>
-        </section>
-      </div>
-    </section>
-
-    <section id="one" class="wrapper">
-      <div class="inner split">
-        <section>
-          <h2>Encoder</h2>
+<body>
+  <section id="banner">
+    <div class="inner split">
+      <section>
+        <img src="images/textshield-logo.png" class="title-logo" />
+        <span>
+          <h2>
+            Text<shield mode="distort" value="Dwj9nF31N5DOEpu15YwVmm5I4/IEPS0mG4yc6lQUdegO5thLEHZKEASMv/s=Y1kcFSkr"></shield>
+            1.0
+          </h2>
           <p>
-            To protect, encode desired text and replace the text in your webpage
-            with the result below. Just don't forget to include
-            <code>textshield.js</code> at the top!
+            TextShield protects sensitive information <shield mode="distort" value="Q68w=P5zo52fDpx78hifpA62lQQkOJtmpWWGerlRlFzd/IW3W5q4VJgXrqo=XltaUlgELA9BFR0bWzRSGhhCNEpG"></shield>
+            aganist unwanted web crawlers/scrapers.
           </p>
+        </span>
+      </section>
+    </div>
+  </section>
 
-          <form action="#" class="alt" method="POST">
-            <div class="row uniform">
-              <div class="8u">
-                <input
-                  id="encodeInput"
-                  placeholder="Input text here"
-                  type="text"
-                />
-              </div>
-              <div class="4u$">
-                <input
-                  id="encodeCost"
-                  placeholder="Decode cost"
-                  type="text"
-                  value="1"
-                />
-              </div>
+  <section id="one" class="wrapper">
+    <div class="inner split">
+      <section>
+        <h2>Encoder</h2>
+        <p>
+          To protect, encode desired text and replace the text in your webpage
+          with the result below. Just don't forget to include
+          <code>textshield.js</code> at the top!
+        </p>
 
-              <label style="display: inline;"
-                ><input type="radio" name="mode" value="plain" /> Plain</label
-              >
-              <label style="display: inline;"
-                ><input type="radio" name="mode" value="normal" /> Normal</label
-              >
-              <label style="display: inline;"
-                ><input
-                  type="radio"
-                  name="mode"
-                  value="distort"
-                  checked="checked"
-                />
-                Distort</label
-              >
-
-              <div class="12u$">
-                <textarea
-                  id="encodeOutput"
-                  placeholder="Protected text"
-                  rows="4"
-                ></textarea>
-              </div>
+        <form action="#" class="alt" method="POST">
+          <div class="row uniform">
+            <div class="8u">
+              <input id="encodeInput" placeholder="Input text here" type="text" />
             </div>
-            <ul class="actions">
-              <li>
-                <input
-                  id="encodeButton"
-                  class="alt"
-                  value="Encode"
-                  type="button"
-                />
-              </li>
-            </ul>
-          </form>
-
-          <h2 style="margin-top: 100px">Decoder</h2>
-          <p>Original text can be retrieved upon Proof of Work (PoW).</p>
-
-          <form action="#" class="alt" method="POST">
-            <div class="row uniform">
-              <div class="12u$">
-                <input
-                  id="decodeInput"
-                  placeholder="Encoded text"
-                  type="text"
-                />
-              </div>
-              <div class="12u$">
-                <textarea
-                  id="decodeOutput"
-                  placeholder="Original text"
-                  rows="4"
-                ></textarea>
-                <p id="decodeTime">Elapsed time: 0 sec</p>
-              </div>
+            <div class="4u$">
+              <input id="encodeCost" placeholder="Decode cost" type="text" value="1" />
             </div>
-            <ul class="actions">
-              <li>
-                <input
-                  id="decodeButton"
-                  class="alt"
-                  value="Decode"
-                  type="button"
-                />
-              </li>
-            </ul>
-          </form>
 
-          <h2 style="margin-top: 100px">Renderer</h2>
-          <p>Input protected result to view rendererd result</p>
+            <label style="display: inline;"><input type="radio" name="mode" value="plain" /> Plain</label>
+            <label style="display: inline;"><input type="radio" name="mode" value="normal" /> Normal</label>
+            <label style="display: inline;"><input type="radio" name="mode" value="distort" checked="checked" />
+              Distort</label>
 
-          <form action="#" class="alt" method="POST">
-            <div class="row uniform">
-              <div class="12u$">
-                <input
-                  id="renderInput"
-                  placeholder="Encoded text"
-                  type="text"
-                />
-                <h2 id="renderOutput"></h2>
-              </div>
+            <div class="12u$">
+              <textarea id="encodeOutput" placeholder="Protected text" rows="4"></textarea>
             </div>
-            <ul class="actions">
-              <li>
-                <input
-                  id="renderButton"
-                  class="alt"
-                  value="Render"
-                  type="button"
-                />
-              </li>
-            </ul>
-          </form>
-        </section>
-        <section>
-          <h2>Text Rendering</h2>
-          <ul class="checklist">
-            <li>Lightweight JavaScript library (~15KB)</li>
-            <li>Seamless integration with HTML</li>
-            <li>PoW based decode protection</li>
+          </div>
+          <ul class="actions">
             <li>
-              Three text rendering modes: <br /><code>
-                <shield
-                  mode="plain"
-                  value="CRbMCzO4cWYl5pMNuZCydzlBKf7YWtiCcQs01bJscx5qTNQrFXqK2dqFAnk=YAIMOXs="
-                ></shield> </code
-              >,
-              <code>
-                <shield
-                  mode="normal"
-                  value="sskTormkjEymov006MyAWy1O0sGB/b53/T0KNrPjszDTbpZx7sjEkilpweA=fn9iOy4h"
-                ></shield>
-              </code>
-              and
-              <code>
-                <shield
-                  mode="distort"
-                  value="lESWjzxfHoBn0H/VEGveeQjOt8ObWKkqC3P9ExV2S+KDAXnG6OypCAZR3KY=dB98HH88Fg=="
-                ></shield>
-              </code>
-              (Try it yourself!)
-            </li>
-            <li>
-              Support server-side textshield encoding library (Node.js and PHP)
+              <input id="encodeButton" class="alt" value="Encode" type="button" />
             </li>
           </ul>
-        </section>
-      </div>
-    </section>
+        </form>
 
-    <!-- Footer -->
-    <footer id="footer">
-      <div class="copyright">
-        Contributers: <a href="https://github.com/agemor">@agemor</a> | Design:
-        <a href="http://templated.co">TEMPLATED</a>.
-      </div>
-    </footer>
+        <h2 style="margin-top: 100px">Decoder</h2>
+        <p>Original text can be retrieved upon Proof of Work (PoW).</p>
 
-    <script>
-      // DOM UI Elements
-      var encodeButton = document.getElementById("encodeButton");
-      var encodeInputText = document.getElementById("encodeInput");
-      var encodeOutputText = document.getElementById("encodeOutput");
-      var encodeCostText = document.getElementById("encodeCost");
+        <form action="#" class="alt" method="POST">
+          <div class="row uniform">
+            <div class="12u$">
+              <input id="decodeInput" placeholder="Encoded text" type="text" />
+            </div>
+            <div class="12u$">
+              <textarea id="decodeOutput" placeholder="Original text" rows="4"></textarea>
+              <p id="decodeTime">Elapsed time: 0 sec</p>
+            </div>
+          </div>
+          <ul class="actions">
+            <li>
+              <input id="decodeButton" class="alt" value="Decode" type="button" />
+            </li>
+          </ul>
+        </form>
 
-      var decodeButton = document.getElementById("decodeButton");
-      var decodeInputText = document.getElementById("decodeInput");
-      var decodeOutputText = document.getElementById("decodeOutput");
-      var decodeTimeText = document.getElementById("decodeTime");
+        <h2 style="margin-top: 100px">Renderer</h2>
+        <p>Input protected result to view rendererd result</p>
 
-      var renderButton = document.getElementById("renderButton");
-      var renderInputText = document.getElementById("renderInput");
-      var renderOutputContainer = document.getElementById("renderOutput");
+        <form action="#" class="alt" method="POST">
+          <div class="row uniform">
+            <div class="12u$">
+              <input id="renderInput" placeholder="Encoded text" type="text" />
+              <h2 id="renderOutput"></h2>
+            </div>
+          </div>
+          <ul class="actions">
+            <li>
+              <input id="renderButton" class="alt" value="Render" type="button" />
+            </li>
+          </ul>
+        </form>
+      </section>
+      <section>
+        <h2>Text Rendering</h2>
+        <ul class="checklist">
+          <li>Lightweight JavaScript library (~15KB)</li>
+          <li>Seamless integration with HTML</li>
+          <li>PoW based decode protection</li>
+          <li>
+            Three text rendering modes: <br /><code>
+              <shield mode="plain" value="CRbMCzO4cWYl5pMNuZCydzlBKf7YWtiCcQs01bJscx5qTNQrFXqK2dqFAnk=YAIMOXs="></shield>
+            </code>,
+            <code>
+              <shield mode="normal" value="sskTormkjEymov006MyAWy1O0sGB/b53/T0KNrPjszDTbpZx7sjEkilpweA=fn9iOy4h"></shield>
+            </code>
+            and
+            <code>
+              <shield mode="distort" value="lESWjzxfHoBn0H/VEGveeQjOt8ObWKkqC3P9ExV2S+KDAXnG6OypCAZR3KY=dB98HH88Fg=="></shield>
+            </code>
+            (Try it yourself!)
+          </li>
+          <li>
+            Support server-side textshield encoding library (Node.js and PHP)
+          </li>
+        </ul>
+      </section>
+    </div>
+  </section>
 
-      // Encode
-      encodeButton.onclick = function() {
-        var input = encodeInputText.value.trim();
-        var cost = Number(encodeCostText.value);
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="copyright">
+      Contributers: <a href="https://github.com/agemor">@agemor</a> | Design:
+      <a href="http://templated.co">TEMPLATED</a>.
+    </div>
+  </footer>
 
-        if (input.length < 1) {
-          alert("Input empty");
-          return;
+  <script>
+    // DOM UI Elements
+    var encodeButton = document.getElementById("encodeButton");
+    var encodeInputText = document.getElementById("encodeInput");
+    var encodeOutputText = document.getElementById("encodeOutput");
+    var encodeCostText = document.getElementById("encodeCost");
+
+    var decodeButton = document.getElementById("decodeButton");
+    var decodeInputText = document.getElementById("decodeInput");
+    var decodeOutputText = document.getElementById("decodeOutput");
+    var decodeTimeText = document.getElementById("decodeTime");
+
+    var renderButton = document.getElementById("renderButton");
+    var renderInputText = document.getElementById("renderInput");
+    var renderOutputContainer = document.getElementById("renderOutput");
+
+    // Encode
+    encodeButton.onclick = function () {
+      var input = encodeInputText.value.trim();
+      var cost = Number(encodeCostText.value);
+
+      if (input.length < 1) {
+        alert("Input empty");
+        return;
+      }
+
+      window.TextShieldEncoder.decodeCost = cost;
+
+      var modeLabel = document.getElementsByName("mode");
+      var selectedMode = "";
+      for (i = 0; i < modeLabel.length; i++) {
+        if (modeLabel[i].checked) {
+          selectedMode = modeLabel[i].value;
         }
+      }
 
-        window.TextShieldEncoder.decodeCost = cost;
+      encodeOutputText.value =
+        '<shield mode="' +
+        selectedMode +
+        '" value="' +
+        window.TextShieldEncoder.encode(input, true) +
+        '"></shield>';
+    };
 
-        var modeLabel = document.getElementsByName("mode");
-        var selectedMode = "";
-        for (i = 0; i < modeLabel.length; i++) {
-          if (modeLabel[i].checked) {
-            selectedMode = modeLabel[i].value;
-          }
-        }
+    decodeButton.onclick = function () {
+      var input = decodeInputText.value.trim();
 
-        encodeOutputText.value =
-          '<shield mode="' +
-          selectedMode +
-          '" value="' +
-          window.TextShieldEncoder.encode(input, true) +
-          '"></shield>';
-      };
+      if (input.length < 1) {
+        alert("Input empty");
+        return;
+      }
 
-      decodeButton.onclick = function() {
-        var input = decodeInputText.value.trim();
+      var value = "";
 
-        if (input.length < 1) {
-          alert("Input empty");
-          return;
-        }
+      if (input.indexOf('value="') >= 0) {
+        value = input
+          .split('value="')[1]
+          .split('"')[0]
+          .trim();
+      }
 
-        var value = "";
+      if (value.length < 1) {
+        alert("Invalid statement");
+        return;
+      }
 
-        if (input.indexOf('value="') >= 0) {
-          value = input
-            .split('value="')[1]
-            .split('"')[0]
-            .trim();
-        }
+      var message = window.TextShieldEncodedMessage.parse(value);
+      var start = new Date().getTime();
 
-        if (value.length < 1) {
-          alert("Invalid statement");
-          return;
-        }
+      var originalMessage = window.TextShieldDecoder.decode(message);
+      var elapsed = new Date().getTime() - start;
 
-        var message = window.TextShieldEncodedMessage.parse(value);
-        var start = new Date().getTime();
+      decodeOutputText.value =
+        originalMessage != "" ? originalMessage : "PoW too high";
 
-        var originalMessage = window.TextShieldDecoder.decode(message);
-        var elapsed = new Date().getTime() - start;
+      decodeTimeText.innerHTML = "Elapsed time: " + elapsed * elapsed;
+    };
 
-        decodeOutputText.value =
-          originalMessage != "" ? originalMessage : "PoW too high";
+    renderButton.onclick = function () {
+      var input = renderInputText.value.trim();
+      if (input.length < 1) {
+        alert("Input text");
+        return;
+      }
 
-        decodeTimeText.innerHTML = "Elapsed time: " + elapsed * elapsed;
-      };
+      renderOutputContainer.innerHTML = input;
+      window.TextShieldLoad();
+    };
+  </script>
+</body>
 
-      renderButton.onclick = function() {
-        var input = renderInputText.value.trim();
-        if (input.length < 1) {
-          alert("Input text");
-          return;
-        }
-
-        renderOutputContainer.innerHTML = input;
-        window.TextShieldLoad();
-      };
-    </script>
-  </body>
 </html>
