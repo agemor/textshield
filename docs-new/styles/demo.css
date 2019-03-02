@@ -1,0 +1,11 @@
+.mt-5 {
+  margin-top: 20px;
+}
+
+logo {
+  background-color: #5755d9;
+  color: white;
+  padding: 0 0.1em;
+  display: inline-block;
+  line-height: 1;
+}

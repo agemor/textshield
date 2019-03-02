@@ -1,6 +1,6 @@
 <img src="icon.png" align="right" />
 
-# TextShield
+# Textshield
 
 > Protect sensitive information aganist unwanted web crawling and scraping bots.
 
