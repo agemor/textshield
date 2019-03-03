@@ -1,5 +1,16 @@
-.mt-5 {
-  margin-top: 20px;
+.space-xs {
+  margin-top: 1em;
+}
+.space-sm {
+  margin-top: 2em;
+}
+
+.space-md {
+  margin-top: 3em;
+}
+
+.space-lg {
+  margin-top: 4em;
 }
 
 logo {

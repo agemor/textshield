@@ -13,7 +13,7 @@
 
   <body>
     <div class="container grid-lg">
-      <header class="navbar mt-5">
+      <header class="navbar space-sm">
         <section class="navbar-section">
           <a href="#" class="btn btn-link">Demo</a>
           <a href="#" class="btn btn-link">Docs</a>
@@ -25,30 +25,123 @@
           <a href="https://github.com/agemor/textshield" class="btn">GitHub</a>
         </section>
       </header>
-      <div class="mt-5">
-        <div class="column">
-          <div class="hero hero-sm ">
-            <div class="hero-body">
-              <h2>This very text is not searchable on Google</h2>
-              <p><a href="#">textshield.js</a> protects sensitive webpage text from web scrappers.</p>
+      <div class="space-md"></div>
+
+      <div class="hero hero-md bg-gray">
+        <div class="hero-body  ">
+          <h2>This very text is invisible to web bots</h2>
+          <p><a href="#">textshield.js</a> protects sensitive webpage text from web scrappers.</p>
+        </div>
+      </div>
+      <div class="space-lg"></div>
+
+      <div class="columns">
+        <div class="column col-4 col-sm-12">
+          <div class="columns">
+            <div class="column col-3 col-sm-2">
+              <img src="images/icon-1.png" class="img-responsive img-fit-contain" alt="..." />
+            </div>
+            <div class="column col-9 col-sm-10">
+              <h4>Simply protected</h4>
+              <p>Save personal data from malicious bots and being exposed to the search engines.</p>
             </div>
           </div>
         </div>
-
-        <h4>How?</h4>
-        <p>
-          Textshield handles protected text in a way that web scrappers cannot recognize. On the server-side, it
-          encrypts original text with random seed. Then the encrypted text is decoded and rendered in raster format on
-          client browsers. From web scrappers' perspective, Textshield-protected text will be seen as neither an HTML
-          element with indecipherable value or distorted raster image.
-        </p>
-
-        <div class="panel">
-          <div class="panel-body">
-            <p>Textshield is a javascript library that protects sensitive text from web bots</p>
+        <div class="column col-4 col-sm-12">
+          <div class="columns">
+            <div class="column col-3  col-sm-2">
+              <img src="images/icon-2.png" class="img-responsive img-fit-contain" alt="..." />
+            </div>
+            <div class="column col-9  col-sm-10">
+              <h4>Low overhead</h4>
+              <p>Highly optimized javascript library with the size less than 15KB.</p>
+            </div>
+          </div>
+        </div>
+        <div class="column col-4 col-sm-12">
+          <div class="columns">
+            <div class="column col-3  col-sm-2">
+              <img src="images/icon-3.png" class="img-responsive img-fit-contain" alt="..." />
+            </div>
+            <div class="column col-9  col-sm-10">
+              <h4>Ready to implement</h4>
+              <p>Various backend framework support including node.js, php, and django.</p>
+            </div>
           </div>
         </div>
       </div>
+
+      <div class="divider"></div>
+      <div class="space-sm"></div>
+
+      <h4>Demo</h4>
+      <div class="columns">
+        <div class="column col-6 col-sm-12"></div>
+        <div class="column col-6 col-sm-12">col-xs-3</div>
+      </div>
+
+      <div class="space-sm"></div>
+      <h4>Convert tool</h4>
+      <div class="columns">
+        <div class="column col-6 col-sm-12">
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">Encoder</div>
+            </div>
+
+            <div class="panel-body">
+              <div class="input-group">
+                <input type="text" class="form-input" placeholder="Text to protect" />
+                <select class="form-select" style="max-width: 100px;">
+                  <option>Easy</option>
+                  <option>Normal</option>
+                  <option>Hard</option>
+                  <option>Extreme</option>
+                </select>
+                <button class="btn btn-primary input-group-btn">Encode</button>
+              </div>
+              <div class="space-xs"></div>
+              <textarea class="form-input" id="input-example-3" placeholder="Encoded result" rows="3">
+fMsV5LltXnbNtWX3TiRNTZ3AP2K73n/nFMbqnyebh69lrWbCQHIVjgiaVQM=Q1dWQj0=</textarea
+              >
+              <div class="space-xs"></div>
+            </div>
+          </div>
+        </div>
+        <div class="column col-6 col-sm-12">
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">Decoder</div>
+            </div>
+
+            <div class="panel-body">
+              <div class="input-group">
+                <input type="text" class="form-input" placeholder="Encoded result" />
+                <button class="btn btn-primary input-group-btn">Decode</button>
+              </div>
+              <pre
+                class="code"
+                data-lang="Recovered text"
+              ><code style="padding: 30px">Hello (elapsed time: 0.03ms)</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="space-sm"></div>
+
+      <h4>How does it work?</h4>
+      <p>
+        Textshield handles protected text in a way that web scrappers cannot recognize. On the server-side, it encrypts
+        original text with random seed. Then the encrypted text is decoded and rendered in raster format on client
+        browsers. From web scrappers' perspective, Textshield-protected text will be seen as neither an HTML element
+        with indecipherable value or distorted raster image.
+      </p>
     </div>
+    <div class="space-lg"></div>
+    <div class="text-center text-gray">
+      <a href="#">textshield.js</a> was built from the effort of all <a href="#">these contributors.</a>
+    </div>
+
+    <div class="space-lg"></div>
   </body>
 </html>
