@@ -15,11 +15,11 @@
     <div class="container grid-lg">
       <header class="navbar space-sm">
         <section class="navbar-section">
-          <a href="#" class="btn btn-link">Demo</a>
-          <a href="#" class="btn btn-link">Docs</a>
+          <a href="/" class="btn btn-link">Demo</a>
+          <a href="docs.html" class="btn btn-link">Docs</a>
         </section>
         <section class="navbar-center">
-          <h4>text<logo>shield</logo></h4>
+          <h4 style="margin-top: 0.5rem;">text<logo>shield</logo></h4>
         </section>
         <section class="navbar-section">
           <a href="https://github.com/agemor/textshield" class="btn">GitHub</a>
@@ -64,7 +64,7 @@
               <img src="images/icon-3.png" class="img-responsive img-fit-contain" alt="..." />
             </div>
             <div class="column col-9  col-sm-10">
-              <h4>Ready to implement</h4>
+              <h4>Easily implementable</h4>
               <p>Various backend framework support including node.js, php, and django.</p>
             </div>
           </div>
@@ -72,15 +72,30 @@
       </div>
 
       <div class="divider"></div>
-      <div class="space-sm"></div>
+      <div class="space-md"></div>
 
       <h4>Demo</h4>
-      <div class="columns">
-        <div class="column col-6 col-sm-12"></div>
-        <div class="column col-6 col-sm-12">col-xs-3</div>
+
+      <div class="panel">
+        <div class="panel-nav">
+          <ul class="tab tab-block">
+            <li class="tab-item active tooltip" data-tooltip="Render demo code">
+              <a href="#">Render</a>
+            </li>
+            <li class="tab-item tooltip" data-tooltip="View and edit demo code">
+              <a href="#">Code</a>
+            </li>
+          </ul>
+        </div>
+        <div class="panel-body">
+          All you need to do to apply textshield in your webpage is quite simple. Include the textshield.js, and replace
+          the text to be protected with simple shield tag. Most of text styles will be automatically maintained. You may
+          use backend textshield module to dynamically compile a text into a shield tag. Or just use the encoder below
+          to do it manually!
+        </div>
       </div>
 
-      <div class="space-sm"></div>
+      <div class="space-md"></div>
       <h4>Convert tool</h4>
       <div class="columns">
         <div class="column col-6 col-sm-12">
@@ -101,7 +116,7 @@
                 <button class="btn btn-primary input-group-btn">Encode</button>
               </div>
               <div class="space-xs"></div>
-              <textarea class="form-input" id="input-example-3" placeholder="Encoded result" rows="3">
+              <textarea readonly class="form-input" id="input-example-3" placeholder="Encoded result" rows="3">
 fMsV5LltXnbNtWX3TiRNTZ3AP2K73n/nFMbqnyebh69lrWbCQHIVjgiaVQM=Q1dWQj0=</textarea
               >
               <div class="space-xs"></div>
@@ -119,15 +134,20 @@ fMsV5LltXnbNtWX3TiRNTZ3AP2K73n/nFMbqnyebh69lrWbCQHIVjgiaVQM=Q1dWQj0=</textarea
                 <input type="text" class="form-input" placeholder="Encoded result" />
                 <button class="btn btn-primary input-group-btn">Decode</button>
               </div>
-              <pre
-                class="code"
-                data-lang="Recovered text"
-              ><code style="padding: 30px">Hello (elapsed time: 0.03ms)</code></pre>
+              <div class="space-xs"></div>
+              <textarea
+                readonly
+                class="form-input"
+                id="input-example-3"
+                placeholder="Recovered text"
+                rows="3"
+              ></textarea>
+              <div class="space-xs"></div>
             </div>
           </div>
         </div>
       </div>
-      <div class="space-sm"></div>
+      <div class="space-md"></div>
 
       <h4>How does it work?</h4>
       <p>
@@ -136,12 +156,11 @@ fMsV5LltXnbNtWX3TiRNTZ3AP2K73n/nFMbqnyebh69lrWbCQHIVjgiaVQM=Q1dWQj0=</textarea
         browsers. From web scrappers' perspective, Textshield-protected text will be seen as neither an HTML element
         with indecipherable value or distorted raster image.
       </p>
+      <div class="space-lg"></div>
+      <div class="text-center text-gray">
+        <a href="#">textshield.js</a> was built from the effort of all <a href="#">these contributors</a>.
+      </div>
+      <div class="space-lg"></div>
     </div>
-    <div class="space-lg"></div>
-    <div class="text-center text-gray">
-      <a href="#">textshield.js</a> was built from the effort of all <a href="#">these contributors.</a>
-    </div>
-
-    <div class="space-lg"></div>
   </body>
 </html>
